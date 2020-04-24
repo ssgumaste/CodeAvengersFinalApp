@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/notification_layout"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    tools:context=".ui.allfragments.Notifications"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/notification_rgrp"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/notification_alerts"
+            android:layout_width="155dp"
+            android:layout_height="57dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#F10D0D"
+            android:checked="true"
+            android:text="Alerts"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/notification_offers"
+            android:layout_width="169dp"
+            android:layout_height="62dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#F10D0D"
+            android:checked="false"
+            android:text="Offers"
+            android:textSize="20sp"
+            />
+    </RadioGroup>
+
+    <fragment
+        android:id="@+id/output"
+        class="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.NotifiAlert"
+        android:layout_width="match_parent"
+        android:layout_height="623dp" />
+
+</LinearLayout>

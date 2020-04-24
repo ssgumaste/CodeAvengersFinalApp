@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_margin="10dp"
+    app:cardElevation="10dp"
+    android:background="#FFF"
+    app:cardCornerRadius="10dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+
+            <ImageView
+                android:id="@+id/img"
+
+                android:layout_width="93dp"
+                android:layout_height="89dp"
+
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/textTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="TextView Title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textquantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="Quantity"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/textmrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="MRP"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textprice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="2"
+                    android:text="Price"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="100dp"
+                    android:gravity="bottom"
+                    android:orientation="vertical">
+
+
+                    <Button
+                        android:id="@+id/buttondta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35sp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/btnback"
+                        android:gravity="center"
+                        android:text="Add"
+                        android:textColor="#FFF"
+
+                        android:textStyle="bold" />
+
+
+                    <LinearLayout
+                        android:id="@+id/layoutL12"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
+
+                        <TableLayout
+                            android:id="@+id/table1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+
+                                android:layout_height="match_parent"
+
+
+                                >
+
+                                <Button
+                                    android:id="@+id/bt1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="2dp"
+                                    android:layout_weight="1400"
+                                    android:background="@drawable/increasebutton"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    android:textColor="#F10A0A"
+                                    android:textSize="20dp" />
+
+                                <TextView
+                                    android:id="@+id/tex1"
+                                    android:layout_width="wrap_content"
+
+                                    android:layout_height="30dp"
+                                    android:ems="1"
+                                    android:gravity="center"
+                                    android:inputType="number"
+                                    android:text="1"
+                                    android:textColor="#F10A0A"
+                                    android:textSize="20sp" />
+
+                                <Button
+                                    android:id="@+id/bt2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="30dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginRight="2dp"
+                                    android:layout_weight="1400"
+                                    android:background="@drawable/increasebutton"
+                                    android:gravity="center"
+                                    android:text="+"
+
+                                    android:textColor="#F10A0A" />
+                            </TableRow>
+
+                        </TableLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

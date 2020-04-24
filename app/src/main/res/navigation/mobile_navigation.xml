@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/navi_vegetables"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Vegetable"
+        android:label="Vegetables"
+        tools:layout="@layout/vegetable_fragment" />
+    <fragment
+        android:id="@+id/navi_fruits"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Fruits"
+        android:label="Fruits"
+        tools:layout="@layout/fruits_fragment" />
+
+    <fragment
+        android:id="@+id/navi_grains"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Grains"
+        android:label="Grains"
+        tools:layout="@layout/grains_fragment" />
+    <fragment
+        android:id="@+id/navigation_category"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.CategoryFragment"
+        android:label="Category"
+        tools:layout="@layout/category_fragment" />
+
+    <fragment
+        android:id="@+id/navi_others"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Others"
+        android:label="Others"
+        tools:layout="@layout/others_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.SearchFragment"
+        android:label="Search"
+        tools:layout="@layout/search_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_offers"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.OffersFragment"
+        android:label="Offers"
+        tools:layout="@layout/offers_fragment" />
+    <fragment
+        android:id="@+id/navigation_basket"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.BasketFragment"
+        android:label="Basket"
+        tools:layout="@layout/basket_fragment" />
+    <fragment
+        android:id="@+id/navigation_order"
+        android:name="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.MyOrder"
+        android:label="Order"
+        tools:layout="@layout/my_order_fragment" />
+
+</navigation>

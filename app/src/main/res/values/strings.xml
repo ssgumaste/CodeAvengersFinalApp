@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">BtmNavPhery</string>
+    <string name="title_home">Home</string>
+    <string name="title_category">Category</string>
+    <string name="title_search">Search</string>
+    <string name="title_offers">Offers</string>
+    <string name="title_basket">Basket</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="cre_deb_title"><![CDATA[Credit & Debit Card]]></string>
+    <string name="dis_per">10%</string>
+    <string name="instant_dis_title">Instant Discount</string>
+    <string name="shop_title">Shop for Rs 1000+</string>
+    <string name="cp_code">Code : SBIIN1564</string>
+    <string name="valid">Valid only on Wednesday</string>
+    <string name="latest_off">Latest Offers</string>
+    <string name="dis_offer">Find discount offers</string>
+    <string name="sub_dec">on Fresh and CleanGrocery</string>
+    <string name="hdfc_code">Code : HDFCBK2568</string>
+    <string name="cp_code_icici">Code : ICCIIN5684</string>
+    <string name="cp_code_kotak">Code : KTKIN1256</string>
+    <string name="cp_code_uni">Code : UNBKN5689</string>
+    <string name="cp_code_axis">Code : AXINBK8568</string>
+    <string name="cb_title"><![CDATA[Credit & Debit Card]]></string>
+    <string name="id_title_sbi">Instant Discount</string>
+    <string name="dis_count">Instant Discount</string>
+    <string name="s_pref_file">spares.matrix.vicky.swapnil.btmnavphery.sh_preference_file</string>
+    <string name="s_pref_login_status">spares.matrix.vicky.swapnil.sh_preference_login_status</string>
+    <string name="s_pref_name">sh_preference_name</string>
+    <string name="s_pref_email">sh_preference_email</string>
+    <string name="s_pref_date">sh_preference_date</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

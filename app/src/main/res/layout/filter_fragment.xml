@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFF"
+    android:id="@+id/filters"
+    tools:context=".ui.allfragments.Filter"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/filter_rgrp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/refineby"
+            android:layout_width="155dp"
+            android:layout_height="57dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#F10D0D"
+            android:checked="true"
+            android:text="Refine by"
+            android:textSize="20sp" />
+        <RadioButton
+            android:id="@+id/sortby"
+            android:layout_width="169dp"
+            android:layout_height="62dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:buttonTint="#F10D0D"
+            android:checked="false"
+            android:text="Sort by"
+            android:textSize="20sp"
+            />
+
+    </RadioGroup>
+
+
+
+    <fragment
+        android:id="@+id/output"
+        class="spares.matrix.vicky.swapnil.btmnavphery.ui.allfragments.NotifiAlert"
+        android:layout_width="match_parent"
+        android:layout_height="640dp" />
+
+</LinearLayout>
