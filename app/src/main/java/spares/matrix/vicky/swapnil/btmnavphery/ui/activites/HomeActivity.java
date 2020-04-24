@@ -101,7 +101,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_sort);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Pherewala");
+        getSupportActionBar().setTitle("Pherywala");
+
         namehel = findViewById(R.id.name1);
         String Name = "Hello, " + MainActivity.appPreference.getDisplayName();
         namehel.setText(Name);
@@ -128,21 +129,6 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView1 = findViewById(R.id.navigationView);
         navigationView1.setNavigationItemSelectedListener(this);
         navigationView1.setNavigationItemSelectedListener(this);
-/*
-      final ActionBar actionbar = getSupportActionBar();
-       actionbar.setHomeAsUpIndicator(R.drawable.ic_sort);
-       actionbar.setTitle("Pherewala");
-        actionbar.setDisplayHomeAsUpEnabled(true);*/
-
-
-      /*  setSupportActionBar(toolbar);*/
-      /*  ActionBar actionbar = getSupportActionBar();
-        actionbar.setHomeAsUpIndicator(R.drawable.ic_sort);
-        actionbar.setDisplayHomeAsUpEnabled(true);
-
-
-
-       */
 
         expandableListView = findViewById(R.id.lvExp);
         expandableListView.setGroupIndicator(null);

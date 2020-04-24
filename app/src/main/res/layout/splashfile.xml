@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:gravity="bottom"
 android:background="@drawable/download">
 
+
     <TextView
+        android:id="@+id/splashtv"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:background="#FF4CAF50"
-        android:text="PheryWala"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="485dp"
+        android:layout_marginBottom="-4dp"
+        android:background="@drawable/cornershape"
+        android:text="Pherywala"
+        android:textAlignment="center"
         android:textColor="#fff"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="569dp"
+        android:layout_marginBottom="111dp"
+        android:text="Discover the best grocery from
+over 1.000 farmers."
+        android:textAlignment="center"
+        android:textColor="#fff"
+        android:textSize="20dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="260dp"
-        android:layout_margin="100dp"
         android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/shapess"
         android:text="Get Started" />
 
