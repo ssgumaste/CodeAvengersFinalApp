@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -36,15 +35,29 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 import spares.matrix.vicky.swapnil.btmnavphery.R;
 import spares.matrix.vicky.swapnil.btmnavphery.ui.activites.HomeActivity;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.activites.MainActivity;
 import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.HomeListAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.VerticalAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.constants.Constant;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.Food;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.GeneralFood;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.RetrofitClient;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.ServiceApi;
 import technolifestyle.com.imageslider.FlipperLayout;
 import technolifestyle.com.imageslider.FlipperView;
 
-public class Vegetable extends Fragment implements RecyclerView.OnItemTouchListener {
+public class Vegetable extends Fragment  {
 
     TextView text12;
     ImageButton back;
@@ -53,9 +66,14 @@ public class Vegetable extends Fragment implements RecyclerView.OnItemTouchListe
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
     ArrayList<HashMap<String, String>> arrayListNews;
+    public static List<GeneralFood> cartFoods = new ArrayList<>();
+
     FlipperLayout flipperLayout;
     Toolbar toolbar1;
+    public static ServiceApi serviceApi;
     TextView text;
+    private HomeListAdapter retrofitAdapter;
+
 
     public static Vegetable newInstance() {
         return new Vegetable();
@@ -67,9 +85,10 @@ public class Vegetable extends Fragment implements RecyclerView.OnItemTouchListe
         View v=inflater.inflate(R.layout.vegetable_fragment, container, false);
 
         mRecyclerview=v.findViewById(R.id.mRecyclerView1);
-        mLayoutManager=new LinearLayoutManager(getContext());
-        mRecyclerview.setLayoutManager(mLayoutManager);
-        callAPI();
+
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        mRecyclerview.setLayoutManager(linearLayoutManager2);
+
       //  back=v.findViewById(R.id.backbutton);
       text12=v.findViewById(R.id.text12);
         toolbar1 =v.findViewById(R.id.toolbar);
@@ -92,9 +111,41 @@ public class Vegetable extends Fragment implements RecyclerView.OnItemTouchListe
                 startActivity(new Intent(getContext(), HomeActivity.class));
             }
         });
+
+
+        ServiceApi retrofitService = RetrofitClient.getApiClient(Constant.baseUrl.BASE_URL).create(ServiceApi.class);
+
+        Call<Food> call = retrofitService.getFoods();
+        call.enqueue(new Callback<Food>() {
+            @Override
+            public void onResponse(Call<Food> call, retrofit2.Response<Food> response) {
+            /*    List<GeneralFood> popularFoods = response.body().getPopularFood();
+                recyclerViewHorizontal.setAdapter(new HorizontalAdapter(popularFoods, R.layout.recyclerview_horizontal, MainActivity.this));
+*/
+                List<GeneralFood> regularFoods = response.body().getVegetables();
+                mRecyclerview.setNestedScrollingEnabled(false);
+                mRecyclerview.setAdapter(new VerticalAdapter(regularFoods, R.layout.data_content, getContext()));
+            }
+
+            @Override
+            public void onFailure(Call<Food> call, Throwable t) {
+
+            }
+        });
+
+
+
         return v;
     }
-    private void callAPI() {
+
+
+
+
+
+    }
+
+
+  /*  private void callAPI() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
         //String url = "https://api.myjson.com/bins/1eits2";
@@ -183,5 +234,5 @@ public class Vegetable extends Fragment implements RecyclerView.OnItemTouchListe
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
-    }
-}
+    }*/
+

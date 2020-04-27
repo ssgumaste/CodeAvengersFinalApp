@@ -1,75 +1,87 @@
+
 package spares.matrix.vicky.swapnil.btmnavphery.ui.adapters;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import spares.matrix.vicky.swapnil.btmnavphery.R;
-import spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Vegetable;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.Offer;
 
-import static android.widget.Toast.*;
+public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.VerticalViewHolder> {
 
-public class PriceListAdapter extends RecyclerView.Adapter<PriceListAdapter.ViewHolder> {
-    Context mContext;
-    ArrayList<HashMap<String, String>> mArray;
-    public PriceListAdapter(Context cxt, ArrayList<HashMap<String, String>> mArray) {
-        this.mContext = cxt;
-        this.mArray = mArray;
-    }
-    public static class ViewHolder extends RecyclerView.ViewHolder  {
-        ImageView imgBanner;
+    private List<Offer> regularFoods;
+    private Context context;
 
-        TextView txtCre, txtTitsb, txtDis, txtShop,txtCd_sbi,txtSbi_cd_validity;
 
-        public ViewHolder(View v) {
-            super(v);
-            imgBanner = v.findViewById(R.id.img);
-            txtCre = v.findViewById(R.id.credit_debit_sbi);
-            txtTitsb = v.findViewById(R.id.id_title_sbi);
-            txtDis = v.findViewById(R.id.sbi_dis);
-            txtShop = v.findViewById(R.id.shop_title_sbi);
-            txtCd_sbi = v.findViewById(R.id.cd_sbi);
-            txtSbi_cd_validity = v.findViewById(R.id.sbi_cd_validity);
+    public static class VerticalViewHolder extends RecyclerView.ViewHolder{
+
+        LinearLayout verticalLayout;
+        TextView regularTitle;
+        TextView regularPrice;
+        ImageView regularImage1;
+        Button regularPlus;
+
+        public VerticalViewHolder(View itemView) {
+            super(itemView);
+
+            verticalLayout = itemView.findViewById(R.id.vertical_parent_layout);
+            regularTitle = itemView.findViewById(R.id.id_title_sbi);
+            regularImage1 = itemView.findViewById(R.id.img);
+            regularPrice = itemView.findViewById(R.id.sbi_dis);
+            //   regularPlus = itemView.findViewById(R.id.cd_sbi);
 
         }
-
-
-
     }
 
+    public PriceListAdapter(List<Offer> regularFoods, int vertical_recyclerview, Context context){
+        this.context = context;
+        this.regularFoods = regularFoods;
+    }
+
+    @NonNull
+    @Override
+    public PriceListAdapter.VerticalViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_offer, parent, false);
+        return new PriceListAdapter.VerticalViewHolder(view);
+    }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        HashMap<String, String> map = mArray.get(position);
-        Glide.with(mContext).load(map.get("imgUrl")).into(holder.imgBanner);
-        holder.txtCre.setText(map.get("card"));
-        holder.txtTitsb.setText(map.get("instant"));
-        holder.txtDis.setText(map.get("discount"));
-        holder.txtShop.setText(map.get("shop"));
-        holder.txtCd_sbi.setText(map.get("code"));
-        holder.txtSbi_cd_validity.setText(map.get("vaild"));
+    public void onBindViewHolder(@NonNull final PriceListAdapter.VerticalViewHolder holder, final int position) {
+        holder.regularTitle.setText(regularFoods.get(position).getInstant());
+        holder.regularPrice.setText((((regularFoods.get(position).getDiscount()))) + " Taka");
+        Glide.with(context)
+                .load(regularFoods.get(position).getFilepath())
+                .fitCenter()
+                .into(holder.regularImage1);
+
+
 
     }
+
+/*    @Override
+    public int getItemCount() {
+        return 0;
+    }*/
+
     @Override
     public int getItemCount() {
-        return mArray.size();
+        return regularFoods.size();
     }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View mRowView = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_offer, parent, false);
-        ViewHolder vh = new ViewHolder(mRowView);
-
-        return vh;
-    }
-
 }

@@ -21,9 +21,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import spares.matrix.vicky.swapnil.btmnavphery.R;
+
 import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.PriceListAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.VerticalAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.constants.Constant;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.Food;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.GeneralFood;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.Offer;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.RetrofitClient;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.ServiceApi;
 
 public class OffersFragment extends Fragment {
     RecyclerView mRecyclerview;
@@ -42,10 +53,29 @@ public class OffersFragment extends Fragment {
         //mLayoutManager=new LinearLayoutManager(getContext());
         mLayoutManager=new GridLayoutManager(getContext(),2);
         mRecyclerview.setLayoutManager(mLayoutManager);
-        callAPI();
+    //    callAPI();
+        ServiceApi retrofitService = RetrofitClient.getApiClient(Constant.baseUrl.BASE_URL).create(ServiceApi.class);
+
+        Call<Food> call = retrofitService.getOfferssFood();
+        call.enqueue(new Callback<Food>() {
+            @Override
+            public void onResponse(Call<Food> call, retrofit2.Response<Food> response) {
+            /*    List<GeneralFood> popularFoods = response.body().getPopularFood();
+                recyclerViewHorizontal.setAdapter(new HorizontalAdapter(popularFoods, R.layout.recyclerview_horizontal, MainActivity.this));
+*/
+                List<Offer> regularFoods = response.body().getOffers();
+                mRecyclerview.setNestedScrollingEnabled(false);
+                mRecyclerview.setAdapter(new PriceListAdapter(regularFoods, R.layout.data_offer, getContext()));
+            }
+
+            @Override
+            public void onFailure(Call<Food> call, Throwable t) {
+
+            }
+        });
         return v2;
     }
-    private void callAPI() {
+  /*  private void callAPI() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
         String url = "https://swapnilz.000webhostapp.com/Pherywala/json/Offers.json";
@@ -66,8 +96,8 @@ public class OffersFragment extends Fragment {
         });
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-    }
-
+    }*/
+/*
     private void parseAPIResponse(String response) {
         try {
             JSONObject objResponse = new JSONObject(response);
@@ -102,5 +132,5 @@ public class OffersFragment extends Fragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

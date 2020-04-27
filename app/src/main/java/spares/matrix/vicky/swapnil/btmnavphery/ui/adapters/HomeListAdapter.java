@@ -21,12 +21,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.squareup.picasso.Picasso;
+
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import spares.matrix.vicky.swapnil.btmnavphery.R;
 import spares.matrix.vicky.swapnil.btmnavphery.ui.categorystore.Vegetable;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.GeneralFood;
 
 import static android.graphics.Color.RED;
 import static android.widget.Toast.LENGTH_SHORT;
@@ -34,22 +38,24 @@ import static android.widget.Toast.makeText;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHolder>  {
-    Context mContext;
+
+
+
     ArrayList<HashMap<String, String>> mArray;
-    public ElegantNumberButton btn1;
-    public ElegantNumberButton btn2;
+    private LayoutInflater inflater;
+    private List<GeneralFood> regularFoods;
+    private Context context;
     public TextView textView;
 
 
 
-    public HomeListAdapter(Context cxt, ArrayList<HashMap<String, String>> mArray){
-        this.mContext = cxt;
-        this.mArray = mArray;
+    public HomeListAdapter(List<GeneralFood> regularFoods, int vertical_recyclerview, Context context){
+        this.context = context;
+        this.regularFoods = regularFoods;
     }
 
 
-
-    public  static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public  static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgBanner;
         TextView txtTitle, txtquantity, txtmrp, txtprice;
         Button buttond;
@@ -57,34 +63,33 @@ public class HomeListAdapter extends RecyclerView.Adapter<HomeListAdapter.ViewHo
         Button add1,sub1;
         TableLayout tableLayout;
         TextView disp;
-        static int numtest = 1;
+      //  static int numtest = 1;
         LinearLayout linearLayout;
 
-        public ViewHolder(View v){
+        public ViewHolder(View v) {
             super(v);
-            imgBanner = v.findViewById(R.id.img);
-            txtTitle =  v.findViewById(R.id.textTitle);
-            txtquantity =  v.findViewById(R.id.textquantity);
-            txtmrp =  v.findViewById(R.id.textmrp);
-            txtprice =  v.findViewById(R.id.textprice);
-            buttond=v.findViewById(R.id.buttondta);
-            buttond.setOnClickListener(this);
-            add1=v.findViewById(R.id.bt2);
-            sub1=v.findViewById(R.id.bt1);
-            disp=v.findViewById(R.id.tex1);
+            imgBanner = v.findViewById(R.id.img1);
+            txtTitle = v.findViewById(R.id.textTitle);
+            txtquantity = v.findViewById(R.id.textquantity);
+            txtmrp = v.findViewById(R.id.textmrp);
+            txtprice = v.findViewById(R.id.textprice);
+            buttond = v.findViewById(R.id.buttondta);
+            add1 = v.findViewById(R.id.bt2);
+            sub1 = v.findViewById(R.id.bt1);
+            disp = v.findViewById(R.id.tex1);
 
-tableLayout=v.findViewById(R.id.table1);
-            linearLayout=v.findViewById(R.id.layoutL12);
-              buttond.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttond.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
-                tableLayout.setVisibility(View.VISIBLE);
-                linearLayout.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
-            }
-        });
-
+            tableLayout = v.findViewById(R.id.table1);
+            linearLayout = v.findViewById(R.id.layoutL12);
+            buttond.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    buttond.setVisibility(View.GONE);
+                    linearLayout.setVisibility(View.VISIBLE);
+                    tableLayout.setVisibility(View.VISIBLE);
+                    linearLayout.setGravity(View.TEXT_ALIGNMENT_TEXT_START);
+                }
+            });
+/*
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,7 +113,7 @@ tableLayout=v.findViewById(R.id.table1);
                     linearLayout.setVisibility(View.GONE);
 
 
-                  /*  disp.setText(s + "");*/
+                  *//*  disp.setText(s + "");*//*
                 }
                 if (numtest > 1) {
                     numtest--;
@@ -117,45 +122,47 @@ tableLayout=v.findViewById(R.id.table1);
                 }
             }
         });
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (v.getId() == txtTitle.getId()) {
-                Toast.makeText(v.getContext(), "ITEM PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(v.getContext(), "ROW PRESSED = " + String.valueOf(getAdapterPosition()), Toast.LENGTH_SHORT).show();
-            }
+        }*/
 
 
         }
+
+
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        HashMap<String,String> map = mArray.get(position);
-        Glide.with(mContext).load(map.get("url")).into(holder.imgBanner);
-        holder.txtTitle.setText(map.get("title"));
-        holder.txtquantity.setText(map.get("quantity"));
-        holder.txtmrp.setText(map.get("mrp"));
-        holder.txtprice.setText(map.get("price"));
-        Vegetable.description1=map.get("detail");
+        holder.txtTitle.setText(regularFoods.get(position).getProductName());
+        holder.txtprice.setText((((regularFoods.get(position).getProductPrice()))) + " Taka");
+        holder.txtmrp.setText((((regularFoods.get(position).getProductPriceBeforeDiscount()))) + " Taka");
+      //  Picasso.get().load(regularFoods.get(position).getFilepath()).fit().into(holder.imgBanner);
+      /*  Picasso.get().load(dataModelArrayList.get(position).getProductImage1()).into(holder.imgBanner);
+        holder.txtTitle.setText(dataModelArrayList.get(position).getProductName());
+        holder.txtmrp.setText(dataModelArrayList.get(position).getProductPriceBeforeDiscount());
+        holder.txtprice.setText(dataModelArrayList.get(position).getProductPrice());*/
+     //   Picasso.get().load(regularFoods.get(position).getProductImage1()).fit().into(holder.imgBanner);
     }
 
     @Override
+    public int getItemCount() {
+        return regularFoods.size();
+    }
+
+   /* @Override
     public int getItemCount()
     {
         return mArray.size();
-    }
+    }*/
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View mRowView = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_content, parent, false);
-        ViewHolder vh = new ViewHolder(mRowView);
+    public HomeListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.data_content, parent, false);
+            return new HomeListAdapter.ViewHolder(view);
 
 
 
-        return vh;
+
     }
 
 

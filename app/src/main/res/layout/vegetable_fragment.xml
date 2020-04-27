@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -57,11 +58,14 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mRecyclerView1"
-        android:layout_width="match_parent"
-        android:layout_height="340dp"
-        tools:listitem="@layout/data_content" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/mRecyclerView1"
+            android:layout_width="match_parent"
+            android:layout_height="340dp"
+            android:orientation="vertical"
+            tools:listitem="@layout/data_content">
 
 
-</LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
+
+</androidx.core.widget.NestedScrollView>

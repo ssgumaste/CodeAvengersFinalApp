@@ -30,10 +30,19 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import spares.matrix.vicky.swapnil.btmnavphery.R;
 import spares.matrix.vicky.swapnil.btmnavphery.ui.activites.HomeActivity;
 import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.HomeListAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.adapters.VerticalAdapter;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.constants.Constant;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.Food;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.model.GeneralFood;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.RetrofitClient;
+import spares.matrix.vicky.swapnil.btmnavphery.ui.services.ServiceApi;
 import technolifestyle.com.imageslider.FlipperLayout;
 import technolifestyle.com.imageslider.FlipperView;
 
@@ -60,7 +69,7 @@ public class Grains extends Fragment {
         mRecyclerview=v1.findViewById(R.id.mRecyclerViewgre);
         mLayoutManager=new LinearLayoutManager(getContext());
         mRecyclerview.setLayoutManager(mLayoutManager);
-        callAPI();
+       // callAPI();
         text12=v1.findViewById(R.id.text12);
         toolbar1 =v1.findViewById(R.id.toolbar);
         flipperLayout1 = v1.findViewById(R.id.flippergra);
@@ -82,11 +91,31 @@ public class Grains extends Fragment {
             }
         });
 
+        ServiceApi retrofitService = RetrofitClient.getApiClient(Constant.baseUrl.BASE_URL).create(ServiceApi.class);
+
+        Call<Food> call = retrofitService.getGrainsFoods();
+        call.enqueue(new Callback<Food>() {
+            @Override
+            public void onResponse(Call<Food> call, retrofit2.Response<Food> response) {
+            /*    List<GeneralFood> popularFoods = response.body().getPopularFood();
+                recyclerViewHorizontal.setAdapter(new HorizontalAdapter(popularFoods, R.layout.recyclerview_horizontal, MainActivity.this));
+*/
+                List<GeneralFood> regularFoods = response.body().getGrains();
+                mRecyclerview.setNestedScrollingEnabled(false);
+                mRecyclerview.setAdapter(new VerticalAdapter(regularFoods, R.layout.data_content, getContext()));
+            }
+
+            @Override
+            public void onFailure(Call<Food> call, Throwable t) {
+
+            }
+        });
+
         return v1;
     }
 
 
-    private void callAPI() {
+  /*  private void callAPI() {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(getContext());
         //String url = "https://api.myjson.com/bins/1eits2";
@@ -148,13 +177,13 @@ public class Grains extends Fragment {
             }
 
             //set adapter
-            mAdapter = new HomeListAdapter(getContext(), arrayListNews);
-            mRecyclerview.setAdapter(mAdapter);
+          *//*  mAdapter = new HomeListAdapter(getContext(), arrayListNews);
+            mRecyclerview.setAdapter(mAdapter);*//*
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-    }
+    }*/
 
 }
